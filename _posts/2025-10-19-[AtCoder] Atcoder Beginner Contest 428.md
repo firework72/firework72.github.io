@@ -23,99 +23,97 @@ $0 \leq i \lt X$를 만족하는 $i$에 대하여,
 
 각 $i$별로 순서대로 시뮬레이션 해 주면 되므로 $O(X)$의 시간 복잡도에 해결할 수 있다.
 
-```C++
-#include <bits/stdc++.h>
 
-using namespace std;
+    #include <bits/stdc++.h>
 
-typedef long long ll;
+    using namespace std;
 
-#define FAST_IO std::cin.tie(NULL); std::cout.tie(NULL); std::ios_base::sync_with_stdio(false);
-#define SIZE 500005
-#define INF 987654321
-#define MOD 998244353
-#define FLAG 10000
+    typedef long long ll;
 
-int ans = 0;
-int s, a, b, x;
+    #define FAST_IO std::cin.tie(NULL); std::cout.tie(NULL); std::ios_base::sync_with_stdio(false);
+    #define SIZE 500005
+    #define INF 987654321
+    #define MOD 998244353
+    #define FLAG 10000
 
-int main() {
-    FAST_IO
-    cin >> s >> a >> b >> x;
+    int ans = 0;
+    int s, a, b, x;
 
-    for (int i = 0; i < x; i++) {
-        if (i % (a + b) < a) {
-            ans += s;
+    int main() {
+        FAST_IO
+        cin >> s >> a >> b >> x;
+
+        for (int i = 0; i < x; i++) {
+            if (i % (a + b) < a) {
+                ans += s;
+            }
+            else {
+
+            }
         }
-        else {
 
-        }
+        cout << ans;
     }
 
-    cout << ans;
-}
-```
 
 ## B. Most Frequent Substrings
 
 길이가 $K$인 모든 부분 문자열을 naive하게 구해서 등장 횟수를 `map`으로 관리해주는 문제다. 가장 많이 등장한 문자열들을 `vector`와 같은 자료구조에 담아둔 뒤 정렬해서 출력해주면 된다.
 
-```C++
-#include <bits/stdc++.h>
+    #include <bits/stdc++.h>
 
-using namespace std;
+    using namespace std;
 
-typedef long long ll;
+    typedef long long ll;
 
-#define FAST_IO std::cin.tie(NULL); std::cout.tie(NULL); std::ios_base::sync_with_stdio(false);
-#define SIZE 500005
-#define INF 987654321
-#define MOD 998244353
-#define FLAG 10000
+    #define FAST_IO std::cin.tie(NULL); std::cout.tie(NULL); std::ios_base::sync_with_stdio(false);
+    #define SIZE 500005
+    #define INF 987654321
+    #define MOD 998244353
+    #define FLAG 10000
 
-int n, k;
-int mx = -1;
+    int n, k;
+    int mx = -1;
 
-map<string, int> m;
+    map<string, int> m;
 
-string s;
+    string s;
 
-vector<string> ans;
+    vector<string> ans;
 
-int main() {
-    FAST_IO
-    cin >> n >> k;
+    int main() {
+        FAST_IO
+        cin >> n >> k;
 
-    cin >> s;
+        cin >> s;
 
-    for (int i = 0; i + k - 1 < n; i++) {
-        string tmp = "";
-        for (int j = 0; j < k; j++) {
-            tmp.push_back(s[i+j]);
+        for (int i = 0; i + k - 1 < n; i++) {
+            string tmp = "";
+            for (int j = 0; j < k; j++) {
+                tmp.push_back(s[i+j]);
+            }
+            m[tmp]++;
         }
-        m[tmp]++;
-    }
 
-    for (auto i : m) {
-        if (mx < i.second) {
-            mx = i.second;
-            ans.clear();
-            ans.push_back(i.first);
+        for (auto i : m) {
+            if (mx < i.second) {
+                mx = i.second;
+                ans.clear();
+                ans.push_back(i.first);
+            }
+            else if (mx == i.second) {
+                ans.push_back(i.first);
+            }
         }
-        else if (mx == i.second) {
-            ans.push_back(i.first);
+
+        sort(ans.begin(), ans.end());
+
+        cout << mx << '\n';
+
+        for (string i : ans) {
+            cout << i << ' ';
         }
     }
-
-    sort(ans.begin(), ans.end());
-
-    cout << mx << '\n';
-
-    for (string i : ans) {
-        cout << i << ' ';
-    }
-}
-```
 
 ## C. Brackets Stack Query
 
